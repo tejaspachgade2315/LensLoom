@@ -402,7 +402,7 @@ export async function deleteSavedPost(savedRecordId: string) {
     if (!statusCode) throw Error;
 
     return { status: "Ok" };
-  } catch (error) { 
+  } catch (error) {
     console.log(error);
   }
 }

@@ -55,19 +55,19 @@ export const useSignOutAccount = () => {
 
 export const useGetPosts = () => {
   return useInfiniteQuery({
-      queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-      queryFn: ({ pageParam }) => getInfinitePosts({ pageParam }),
-      getNextPageParam: (lastPage: any) => {
-          if (!lastPage || !lastPage.documents || lastPage.documents.length === 0) {
-              return null
-          }
+    queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
+    queryFn: ({ pageParam }) => getInfinitePosts({ pageParam }),
+    getNextPageParam: (lastPage: any) => {
+      if (!lastPage || !lastPage.documents || lastPage.documents.length === 0) {
+        return null;
+      }
 
-          const lastId = lastPage.documents[lastPage.documents.length - 1].$id
-          return lastId
-      },
-      initialPageParam: 0,
-  })
-}
+      const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
+      return lastId;
+    },
+    initialPageParam: 0,
+  });
+};
 
 export const useSearchPosts = (searchTerm: string) => {
   return useQuery({
