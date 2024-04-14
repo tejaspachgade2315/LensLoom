@@ -57,8 +57,7 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="w-1/2 h-screen">
-      <Form {...form}>
+    <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         {/* <img src="/assets/images/logo.svg" alt="logo" /> */}
         <div className="flex gap-1 items-center">
@@ -126,8 +125,6 @@ const SigninForm = () => {
         </form>
       </div>
     </Form>
-    </div>
-    
   );
 };
 
