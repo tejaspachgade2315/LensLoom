@@ -27,6 +27,7 @@ const App = () => {
           <Route path="/sign-in" element={<SigninForm />} />
           <Route path="/sign-up" element={<SignupForm />} />
           <Route path="/" element={<SigninForm />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* private routes */}
