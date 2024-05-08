@@ -35,7 +35,7 @@ const LeftSidebar = () => {
             height={36}
           /> */}
           <div className="flex gap-1 items-center">
-            <img src="/assets/images/x.svg" alt="" className="w-10" />
+            <img src="/assets/images/x.svg" alt="logo" className="w-10" />
             <h1 className="text-4xl font-bold text-purple-200">LensLoom</h1>
           </div>
         </Link>
