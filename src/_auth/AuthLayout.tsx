@@ -12,10 +12,10 @@ export default function AuthLayout() {
         <Navigate to="/" />
       ) : (
         <div className="flex flex-wrap h-screen w-full bg-[#0e1630]">
-          <div className="h-screen w-1/2 md:w-full xl:w-full lg:w-full 2xl:w-full flex items-center justify-center">
+          <div className="w-full md:w-1/2 xl:w-1/2 lg:w-1/2 2xl:w-1/2 flex items-center justify-center">
             <Outlet />
           </div>
-          <div className="h-screen w-1/2 flex items-start pt-10 justify-center">
+          <div className="h-screen w-1/2 flex items-center -pt-10 justify-center">
             <Tilt>
               <img
                 src="https://gifdb.com/images/high/panda-waving-cartoon-sticker-pi4qfklzce0s7zo5.gif"
