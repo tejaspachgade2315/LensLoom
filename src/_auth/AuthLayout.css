@@ -28,8 +28,8 @@
     #5aabde
   );
   background-size: 400%;
-  width: calc(100% + 5px);
-  height: calc(100% + 5px);
+  width: calc(100%);
+  height: calc(100%);
   z-index: -1;
   animation: glower 20s linear infinite;
 }
