@@ -1,7 +1,5 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
+import Loader from "@/components/shared/Loader";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,18 +9,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Loader from "@/components/shared/Loader";
 import { useToast } from "@/components/ui/use-toast";
-import { SigninValidation } from "@/lib/validation";
-import { useSignInAccount } from "@/lib/react-query/queries";
 import { useUserContext } from "@/context/AuthContext";
+import { useSignInAccount } from "@/lib/react-query/queries";
+import { SigninValidation } from "@/lib/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import * as z from "zod";
 
 const SigninForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
-
+  const [showPassword, setShowPassword] = useState(false);
   // Query
   const { mutateAsync: signInAccount } = useSignInAccount();
 
@@ -44,7 +46,7 @@ const SigninForm = () => {
     }
 
     const isLoggedIn = await checkAuthUser();
-
+console.log(isLoggedIn,session)
     if (isLoggedIn) {
       form.reset();
 
@@ -95,15 +97,44 @@ const SigninForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="shad-form_label">Password</FormLabel>
-                <FormControl>
-                  <Input type="password" className="shad-input" {...field} />
-                </FormControl>
+
+                {/* wrapper to position eye icon inside input */}
+                <div className="relative">
+                  <FormControl>
+                    {/* add right padding so text doesn't overlap the icon */}
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      className="shad-input pr-10"
+                      {...field}
+                    />
+                  </FormControl>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((s) => !s)}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-light-3"
+                  >
+                    {showPassword ? (
+                      <EyeOffIcon className="w-4 h-4" />
+                    ) : (
+                      <EyeIcon className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          <Button type="submit" className="shad-button_primary">
+         
+          <Button
+            type="submit"
+            className="shad-button_primary"
+            disabled={isUserLoading}
+          >
             {isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
