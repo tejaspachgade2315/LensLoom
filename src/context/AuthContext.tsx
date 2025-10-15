@@ -55,7 +55,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         return true;
       }
-
+console.log(user)
       return false;
     } catch (error) {
       console.error(error);
