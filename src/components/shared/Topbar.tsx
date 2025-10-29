@@ -1,8 +1,9 @@
+import { useUserContext } from "@/context/AuthContext";
+import { useSignOutAccount } from "@/lib/react-query/queries";
+import { toAppwriteViewUrl } from "@/lib/utils";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
-import { useUserContext } from "@/context/AuthContext";
-import { useSignOutAccount } from "@/lib/react-query/queries";
 
 const Topbar = () => {
   const navigate = useNavigate();
@@ -39,7 +40,10 @@ const Topbar = () => {
           </Button>
           <Link to={`/profile/${user.id}`} className="flex-center gap-3">
             <img
-              src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+              src={
+                toAppwriteViewUrl(user.imageUrl) ||
+                "/assets/icons/profile-placeholder.svg"
+              }
               alt="profile"
               className="h-8 w-8 rounded-full"
             />

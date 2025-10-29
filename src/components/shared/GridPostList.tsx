@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { PostStats } from "@/components/shared";
 import { useUserContext } from "@/context/AuthContext";
+import { toAppwriteViewUrl } from "@/lib/utils";
 
 type GridPostListProps = {
   posts: Models.Document[];
@@ -16,6 +17,7 @@ const GridPostList = ({
   showStats = true,
 }: GridPostListProps) => {
   const { user } = useUserContext();
+  console.log("Post",posts[0])
 
   return (
     <ul className="grid-container">
@@ -34,7 +36,7 @@ const GridPostList = ({
               <div className="flex items-center justify-start gap-2 flex-1">
                 <img
                   src={
-                    post.creator.imageUrl ||
+                    toAppwriteViewUrl(post.creator.imageUrl) ||
                     "/assets/icons/profile-placeholder.svg"
                   }
                   alt="creator"

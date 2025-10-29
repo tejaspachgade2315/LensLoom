@@ -1,6 +1,7 @@
 import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 
+import { toAppwriteViewUrl } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 type UserCardProps = {
@@ -11,7 +12,10 @@ const UserCard = ({ user }: UserCardProps) => {
   return (
     <Link to={`/profile/${user.$id}`} className="user-card">
       <img
-        src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+        src={
+          toAppwriteViewUrl(user.imageUrl) ||
+          "/assets/icons/profile-placeholder.svg"
+        }
         alt="creator"
         className="rounded-full w-14 h-14"
       />

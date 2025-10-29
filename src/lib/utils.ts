@@ -56,3 +56,16 @@ export const multiFormatDateString = (timestamp: string = ""): string => {
 export const checkIsLiked = (likeList: string[], userId: string) => {
   return likeList.includes(userId);
 };
+
+export const toAppwriteViewUrl = (maybePreviewUrl?: string) => {
+  if (!maybePreviewUrl) return undefined;
+  try {
+    const u = new URL(maybePreviewUrl);
+    u.pathname = u.pathname.replace(/\/preview$/, "/view");
+    const project = u.searchParams.get("project");
+    u.search = project ? `?project=${encodeURIComponent(project)}` : "";
+    return u.toString();
+  } catch {
+    return maybePreviewUrl;
+  }
+};

@@ -31,8 +31,8 @@ const SigninForm = () => {
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "testuser1234@gmail.com",
+      password: "Test@1234",
     },
   });
 
@@ -46,7 +46,7 @@ const SigninForm = () => {
     }
 
     const isLoggedIn = await checkAuthUser();
-console.log(isLoggedIn,session)
+    console.log(isLoggedIn, session);
     if (isLoggedIn) {
       form.reset();
 
@@ -129,7 +129,13 @@ console.log(isLoggedIn,session)
               </FormItem>
             )}
           />
-         
+          <div
+            role="status"
+            aria-live="polite"
+            className="text-center text-sm text-gray-700 bg-gray-100 px-3 py-2 rounded-md"
+          >
+            "Click to login directly (demo credentials prefilled)
+          </div>
           <Button
             type="submit"
             className="shad-button_primary"

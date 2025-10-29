@@ -2,8 +2,8 @@ import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 
 import { PostStats } from "@/components/shared";
-import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
+import { multiFormatDateString, toAppwriteViewUrl } from "@/lib/utils";
 
 type PostCardProps = {
   post: Models.Document;
@@ -21,7 +21,7 @@ const PostCard = ({ post }: PostCardProps) => {
           <Link to={`/profile/${post.creator.$id}`}>
             <img
               src={
-                post.creator?.imageUrl ||
+                toAppwriteViewUrl(post.creator.imageUrl) ||
                 "/assets/icons/profile-placeholder.svg"
               }
               alt="creator"
@@ -47,7 +47,8 @@ const PostCard = ({ post }: PostCardProps) => {
 
         <Link
           to={`/update-post/${post.$id}`}
-          className={`${user.id !== post.creator.$id && "hidden"}`}>
+          className={`${user.id !== post.creator.$id && "hidden"}`}
+        >
           <img
             src={"/assets/icons/edit.svg"}
             alt="edit"
